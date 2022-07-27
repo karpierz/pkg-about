@@ -64,23 +64,20 @@ test = [
     'deepdiff>=5.8.1',
 ]
 [project.urls]
-'Homepage'      = 'https://pypi.org/project/pkg_about/'
-'Documentation' = 'https://pkg_about.readthedocs.io/'
-'Download'      = 'https://pypi.org/project/pkg_about/'
-'Source'        = 'https://github.com/karpierz/pkg_about'
-'Issues'        = 'https://github.com/karpierz/pkg_about/issues'
+Homepage      = 'https://pypi.org/project/pkg_about/'
+Documentation = 'https://pkg_about.readthedocs.io/'
+Download      = 'https://pypi.org/project/pkg_about/'
+Source        = 'https://github.com/karpierz/pkg_about'
+Issues        = 'https://github.com/karpierz/pkg_about/issues'
 
 [project.scripts]
-#sample-cli = "pkg_about:main_cli"
+#pkg_about = 'pkg_about.__main__:main'
 
 [project.gui-scripts]
-#sample-gui = "pkg_about:main_gui"
+#pkg_about-gui = 'pkg_about:main_gui'
 
-[project.entry-points."pkg_about.magical"]
-#epoint = "pkg_about:main_epoint"
-
-[tool.distutils.bdist_wheel]
-#universal = false # false is default
+#[project.entry-points.'pkg_about.magical']
+#epoint = 'pkg_about:main_epoint'
 
 [tool.setuptools.dynamic]
 readme = { file = ['README.rst', 'CHANGES.rst'], content-type = 'text/x-rst; charset=UTF-8' }
@@ -97,10 +94,11 @@ where = ['src']
 
 [tool.setuptools.package-dir]
 '' = 'src'
-#'pkg_about.tests' = 'tests'
+#pkg_about.tests = 'tests'
 
 [tool.setuptools.package-data]
-pkg_about = []
+pkg_about = [
+]
 
 [tool.coverage.run]
 source = [
