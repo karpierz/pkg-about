@@ -94,7 +94,7 @@ where = ['src']
 
 [tool.setuptools.package-dir]
 '' = 'src'
-#pkg_about.tests = 'tests'
+#'pkg_about.tests' = 'tests'
 
 [tool.setuptools.package-data]
 pkg_about = [
