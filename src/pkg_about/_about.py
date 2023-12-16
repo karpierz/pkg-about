@@ -15,7 +15,8 @@ def about(package=None):
     if package is None: package = pkg_globals["__package__"]
     metadata = get_metadata(package)
     version = parse_version(metadata["Version"])
-    project_urls = {item.partition(",")[0].strip(): item.partition(",")[2].lstrip()
+    project_urls = {item.partition(",")[0].strip():
+                    item.partition(",")[2].lstrip()
                     for item in metadata.get_all("Project-URL")}
     release_levels = __release_levels
 
@@ -59,11 +60,13 @@ def about_from_setup(package_path=None):
     from pathlib import Path
     from packaging.version import parse as parse_version
     try:
-        from setuptools.config.setupcfg import read_configuration as read_setupcfg
+        from setuptools.config.setupcfg import (read_configuration as
+                                                read_setupcfg)
     except ImportError:  # pragma: no cover
         from setuptools.config import read_configuration as read_setupcfg
     try:
-        from setuptools.config.pyprojecttoml import read_configuration as read_pyprojecttoml
+        from setuptools.config.pyprojecttoml import (read_configuration as
+                                                     read_pyprojecttoml)
     except ImportError:  # pragma: no cover
         read_pyprojecttoml = None
     pkg_globals = sys._getframe(1).f_globals
@@ -124,12 +127,12 @@ def about_from_setup(package_path=None):
                                 or get(metadata, "maintainer"))
         __maintainer_email__ = (get(metadata, "maintainers", 1, "email")
                                 or get(metadata, "maintainer_email"))
-        __license__      = (get(metadata, "license", "text")
-                            or get(metadata, "license"))
-        __copyright__    = eval(next((copyr_patt.split(line)[1] for line in
-                                      (next(about_py).open("rt", encoding="utf-8")
-                                       if about_py else ())
-                                      if copyr_patt.split(line)[1:]), "None"))
+        __license__   = (get(metadata, "license", "text")
+                         or get(metadata, "license"))
+        __copyright__ = eval(next((copyr_patt.split(line)[1] for line in
+                                   (next(about_py).open("rt", encoding="utf-8")
+                                    if about_py else ())
+                                   if copyr_patt.split(line)[1:]), "None"))
 
     pkg_globals["about"] = about
     pkg_globals.setdefault("__all__", [])
