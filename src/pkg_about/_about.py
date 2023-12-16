@@ -8,7 +8,10 @@ __all__ = ('about', 'about_from_setup')
 def about(package=None):
     import sys
     from packaging.version import parse as parse_version
-    from importlib_metadata import metadata as get_metadata
+    if sys.version_info >= (3, 10):
+        from importlib.metadata import metadata as get_metadata
+    else:
+        from importlib_metadata import metadata as get_metadata
     pkg_globals = sys._getframe(1).f_globals
     pkg_globals.pop("__builtins__", None)
     pkg_globals.pop("__cached__",   None)
@@ -80,7 +83,10 @@ def about_from_setup(package_path=None):
             metadata.update(read_pyprojecttoml(pyproject_path,
                             ignore_option_errors=True).get("project", {}))
         else:
-            import tomli as tomllib
+            if sys.version_info >= (3, 11):
+                import tomllib
+            else:
+                import tomli as tomllib
             with pyproject_path.open("rb") as file:
                 metadata.update(tomllib.load(file).get("project", {}))
     copyr_patt = re.compile(r"^\s*__copyright__\s*=\s*")

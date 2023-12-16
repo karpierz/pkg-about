@@ -1,6 +1,15 @@
 Changelog
 =========
 
+1.1.0 (2022-12-15)
+------------------
+- Add support for Python 3.12
+- Drop support for Python 3.7
+- Add support for PyPy 3.10
+- Drop support for PyPy 3.7 and 3.8
+- Copyright year update.
+- Added a trivial unit test.
+
 1.0.8 (2022-10-18)
 ------------------
 - Tox configuration has been moved to pyproject.toml
@@ -24,7 +33,7 @@ Changelog
 
 1.0.4 (2022-01-10)
 ------------------
-- Drop support for Python 3.6.
+- Drop support for Python 3.6
 - Copyright year update.
 - Setup update.
 
