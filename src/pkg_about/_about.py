@@ -1,4 +1,4 @@
-# Copyright (c) 2020-2022 Adam Karpierz
+# Copyright (c) 2020-2024 Adam Karpierz
 # Licensed under the zlib/libpng License
 # https://opensource.org/licenses/Zlib
 
@@ -8,17 +8,14 @@ __all__ = ('about', 'about_from_setup')
 def about(package=None):
     import sys
     from packaging.version import parse as parse_version
-    if sys.version_info >= (3, 10):
-        from importlib.metadata import metadata as get_metadata
-    else:
-        from importlib_metadata import metadata as get_metadata
+    from importlib.metadata import metadata as get_metadata
     pkg_globals = sys._getframe(1).f_globals
     pkg_globals.pop("__builtins__", None)
     pkg_globals.pop("__cached__",   None)
     if package is None: package = pkg_globals["__package__"]
     metadata = get_metadata(package)
     version = parse_version(metadata["Version"])
-    project_urls = {item.partition(",")[0]: item.partition(",")[2]
+    project_urls = {item.partition(",")[0].strip(): item.partition(",")[2].lstrip()
                     for item in metadata.get_all("Project-URL")}
     release_levels = __release_levels
 
@@ -63,15 +60,15 @@ def about_from_setup(package_path=None):
     from packaging.version import parse as parse_version
     try:
         from setuptools.config.setupcfg import read_configuration as read_setupcfg
-    except ImportError:
+    except ImportError:  # pragma: no cover
         from setuptools.config import read_configuration as read_setupcfg
     try:
         from setuptools.config.pyprojecttoml import read_configuration as read_pyprojecttoml
-    except ImportError:
+    except ImportError:  # pragma: no cover
         read_pyprojecttoml = None
     pkg_globals = sys._getframe(1).f_globals
-    if package_path is None:
-        package_path = Path(pkg_globals["__file__"]).resolve().parents[1]
+    package_path = (Path(pkg_globals["__file__"]).resolve().parents[1]
+                    if package_path is None else Path(package_path))
     pyproject_path = package_path/"pyproject.toml"
     setup_cfg_path = package_path/"setup.cfg"
     metadata = {}
@@ -82,7 +79,7 @@ def about_from_setup(package_path=None):
         if read_pyprojecttoml:
             metadata.update(read_pyprojecttoml(pyproject_path,
                             ignore_option_errors=True).get("project", {}))
-        else:
+        else:  # pragma: no cover
             if sys.version_info >= (3, 11):
                 import tomllib
             else:
@@ -111,7 +108,7 @@ def about_from_setup(package_path=None):
                                     "final"],
                                 serial=(version.pre[1] if version.pre else
                                         version.dev or version.post
-                                        or version.local or 0))),
+                                        or version.local or 0)))
         __summary__      = get(metadata, "description")
         __uri__          = (get(metadata, "urls", "Home-page")
                             or get(metadata, "urls", "Homepage")
@@ -119,13 +116,13 @@ def about_from_setup(package_path=None):
                             or get(metadata, "url"))
         __author__       = (get(metadata, "authors", 0, "name")
                             or get(metadata, "author"))
-        __email__        = (get(metadata, "authors", 0, "email")
+        __email__        = (get(metadata, "authors", 1, "email")
                             or get(metadata, "author_email"))
-        __author_email__ = (get(metadata, "authors", 0, "email")
+        __author_email__ = (get(metadata, "authors", 1, "email")
                             or get(metadata, "author_email"))
         __maintainer__       = (get(metadata, "maintainers", 0, "name")
                                 or get(metadata, "maintainer"))
-        __maintainer_email__ = (get(metadata, "maintainers", 0, "email")
+        __maintainer_email__ = (get(metadata, "maintainers", 1, "email")
                                 or get(metadata, "maintainer_email"))
         __license__      = (get(metadata, "license", "text")
                             or get(metadata, "license"))
@@ -145,7 +142,8 @@ def __get(mdata, *keys):
             if key not in mdata: return None
         elif isinstance(mdata, (list, tuple)):
             if key >= len(mdata): return None
-        else: return None
+        else:  # pragma: no cover
+            return None
         mdata = mdata[key]
     return mdata
 

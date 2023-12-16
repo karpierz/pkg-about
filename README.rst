@@ -1,4 +1,4 @@
-pkg_about
+pkg-about
 =========
 
 Shares Python package metadata at runtime.
@@ -81,9 +81,9 @@ Authors
 
 * Adam Karpierz <adam@karpierz.net>
 
-.. |package| replace:: pkg_about
-.. |package_bold| replace:: **pkg_about**
+.. |package| replace:: pkg-about
+.. |package_bold| replace:: **pkg-about**
 .. |respository| replace:: https://github.com/karpierz/pkg_about.git
 .. _Development page: https://github.com/karpierz/pkg_about
-.. _PyPI record: https://pypi.org/project/pkg_about/
+.. _PyPI record: https://pypi.org/project/pkg-about/
 .. _Documentation: https://pkg-about.readthedocs.io/

@@ -7,6 +7,11 @@ Changelog
 - Drop support for Python 3.7
 - Add support for PyPy 3.10
 - Drop support for PyPy 3.7 and 3.8
+- Bugfix for parsing metadata's "Project-URL".
+- Bugfix of about_from_setup() for __version_info__.
+- | Enhancement" the 'package_path' parameter of the about_from_setup()
+  | can now be of type string or Path.
+- Bugfix of about_from_setup() for parsing author and maintainer emails.
 - Copyright year update.
 - Added a trivial unit test.
 
