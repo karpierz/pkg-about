@@ -83,7 +83,7 @@ Authors
 
 .. |package| replace:: pkg-about
 .. |package_bold| replace:: **pkg-about**
-.. |respository| replace:: https://github.com/karpierz/pkg_about.git
-.. _Development page: https://github.com/karpierz/pkg_about
+.. |respository| replace:: https://github.com/karpierz/pkg-about.git
+.. _Development page: https://github.com/karpierz/pkg-about
 .. _PyPI record: https://pypi.org/project/pkg-about/
 .. _Documentation: https://pkg-about.readthedocs.io/
