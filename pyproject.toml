@@ -1,4 +1,4 @@
-# Copyright (c) 2020-2024 Adam Karpierz
+# Copyright (c) 2020 Adam Karpierz
 # Licensed under the zlib/libpng License
 # https://opensource.org/licenses/Zlib
 
@@ -8,7 +8,7 @@ requires = ['setuptools>=68.2.2', 'wheel>=0.42.0', 'packaging>=23.2.0', 'tox>=4.
 
 [project]
 name        = 'pkg-about'
-version     = '1.1.1'
+version     = '1.1.2'
 description = 'Shares Python package metadata at runtime.'
 urls.Homepage      = 'https://pypi.org/project/pkg-about/'
 urls.Documentation = 'https://pkg-about.readthedocs.io/'
@@ -231,7 +231,6 @@ deps =
 [testenv:build]
 depends = py{38,39,310,311,312}, pypy{39,310}win, docs
 basepython = {[base]basepython}
-skip_install = true
 commands =
     {envpython} -c "import warnings ; warnings.filterwarnings('ignore') ; from setuptools import setup ; setup()" --quiet sdist --formats=zip
     {envpython} -c "import warnings ; warnings.filterwarnings('ignore') ; from setuptools import setup ; setup()" --quiet bdist_wheel
