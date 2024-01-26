@@ -10,12 +10,13 @@ import pkg_about
 
 class MainTestCase(unittest.TestCase):
 
-    def setUp(self):
-        self.version_expected = "1.1.4"
-        version_parts = self.version_expected.split(".")
-        self.version_major_expected = int(version_parts[0])
-        self.version_minor_expected = int(version_parts[1])
-        self.version_micro_expected = int(version_parts[2])
+    @classmethod
+    def setUpClass(cls):
+        cls.version_expected = "1.1.5"
+        version_parts = cls.version_expected.split(".")
+        cls.version_major_expected = int(version_parts[0])
+        cls.version_minor_expected = int(version_parts[1])
+        cls.version_micro_expected = int(version_parts[2])
 
     def test_about(self):
         pkg_about.about("pkg_about")
