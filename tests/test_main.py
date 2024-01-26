@@ -11,15 +11,19 @@ import pkg_about
 class MainTestCase(unittest.TestCase):
 
     def setUp(self):
-        pass
+        self.version_expected = "1.1.4"
+        version_parts = self.version_expected.split(".")
+        self.version_major_expected = int(version_parts[0])
+        self.version_minor_expected = int(version_parts[1])
+        self.version_micro_expected = int(version_parts[2])
 
     def test_about(self):
         pkg_about.about("pkg_about")
         self.assertEqual(__title__, "pkg-about")
-        self.assertEqual(__version__, "1.1.3")
-        self.assertEqual(__version_info__.major, 1)
-        self.assertEqual(__version_info__.minor, 1)
-        self.assertEqual(__version_info__.micro, 3)
+        self.assertEqual(__version__, self.version_expected)
+        self.assertEqual(__version_info__.major, self.version_major_expected)
+        self.assertEqual(__version_info__.minor, self.version_minor_expected)
+        self.assertEqual(__version_info__.micro, self.version_micro_expected)
         self.assertEqual(__version_info__.releaselevel, "final")
         self.assertEqual(__version_info__.serial, 0)
         self.assertEqual(__summary__, "Shares Python package metadata at runtime.")
@@ -36,10 +40,10 @@ class MainTestCase(unittest.TestCase):
     def test_about_from_setup(self):
         pkg_about.about_from_setup(Path(__file__).resolve().parent.parent)
         self.assertEqual(about.__title__, "pkg-about")
-        self.assertEqual(about.__version__, "1.1.3")
-        self.assertEqual(about.__version_info__.major, 1)
-        self.assertEqual(about.__version_info__.minor, 1)
-        self.assertEqual(about.__version_info__.micro, 3)
+        self.assertEqual(about.__version__, self.version_expected)
+        self.assertEqual(about.__version_info__.major, self.version_major_expected)
+        self.assertEqual(about.__version_info__.minor, self.version_minor_expected)
+        self.assertEqual(about.__version_info__.micro, self.version_micro_expected)
         self.assertEqual(about.__version_info__.releaselevel, "final")
         self.assertEqual(about.__version_info__.serial, 0)
         self.assertEqual(about.__summary__, "Shares Python package metadata at runtime.")
