@@ -3,7 +3,7 @@
 
 [build-system]
 build-backend = 'setuptools.build_meta'
-requires = ['setuptools>=70.3.0', 'wheel>=0.43.0', 'packaging>=24.1.2', 'tox>=4.16.0']
+requires = ['setuptools>=70.3.0', 'wheel>=0.43.0', 'packaging>=24.1.0', 'tox>=4.16.0']
 
 [project]
 name        = 'pkg-about'
@@ -46,7 +46,7 @@ requires-python = '>=3.8.10,<4.0.0'
 dependencies = [
     # mandatory
     'setuptools>=70.3.0',
-    'packaging>=24.1.2',
+    'packaging>=24.1.0',
     'tomli>=2.0.1 ; python_version < "3.11"',
     # others
 ]
