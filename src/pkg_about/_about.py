@@ -18,6 +18,9 @@ def about(package=None):
                     item.partition(",")[2].lstrip()
                     for item in metadata.get_all("Project-URL")}
     release_levels = __release_levels
+    copyright = project_urls.get("Copyright")
+    if copyright is not None and copyright.startswith("about:"):
+        copyright = copyright[len("about:"):].lstrip("/")
 
     pkg_metadata = dict(
         __title__        = metadata["Name"],
@@ -46,7 +49,7 @@ def about(package=None):
         __maintainer__       = metadata.get("Maintainer"),
         __maintainer_email__ = metadata.get("Maintainer-email"),
         __license__      = metadata.get("License"),
-        __copyright__    = metadata.get("Copyright")  # for now is None
+        __copyright__    = copyright
     )
 
     pkg_globals.update(pkg_metadata)
@@ -92,6 +95,9 @@ def about_from_setup(package_path=None):
     about_py = package_path.glob("src/**/__about__.py")
     version = parse_version(metadata["version"])
     release_levels, get = __release_levels, __get
+    copyright = get(metadata, "urls", "Copyright")
+    if copyright is not None and copyright.startswith("about:"):
+        copyright = copyright[len("about:"):].lstrip("/")
 
     class about:
         __slots__  = ()
@@ -128,10 +134,11 @@ def about_from_setup(package_path=None):
                                 or get(metadata, "maintainer_email"))
         __license__   = (get(metadata, "license", "text")
                          or get(metadata, "license"))
-        __copyright__ = eval(next((copyr_patt.split(line)[1] for line in
-                                   (next(about_py).open("rt", encoding="utf-8")
-                                    if about_py else ())
-                                   if copyr_patt.split(line)[1:]), "None"))
+        __copyright__ = (copyright if copyright is not None else
+                         eval(next((copyr_patt.split(line)[1] for line in
+                                    (next(about_py).open("rt", encoding="utf-8")
+                                     if about_py else ())
+                                    if copyr_patt.split(line)[1:]), "None")))
 
     pkg_globals["about"] = about
     pkg_globals.setdefault("__all__", [])

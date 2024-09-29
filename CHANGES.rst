@@ -1,6 +1,13 @@
 Changelog
 =========
 
+1.2.0 (2024-09-30)
+------------------
+- Drop support for Python 3.8
+- | Ability to define __copyright__ by the project's url 'Copyright'
+  | using 'about:' URI schema.
+- Setup (dependencies) update.
+
 1.1.8 (2024-08-13)
 ------------------
 - Add support for Python 3.13
