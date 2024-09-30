@@ -14,7 +14,6 @@ urls.Documentation = 'https://pkg-about.readthedocs.io/'
 urls.Download      = 'https://pypi.org/project/pkg-about/'
 urls.Source        = 'https://github.com/karpierz/pkg-about'
 urls.Issues        = 'https://github.com/karpierz/pkg-about/issues'
-urls.Copyright     = 'about://Copyright (c) 2020-2024 Adam Karpierz'
 license = { text = 'zlib/libpng License ; https://opensource.org/license/zlib' }
 authors = [
     { name  = 'Adam Karpierz' },
@@ -48,7 +47,9 @@ dependencies = [
     # mandatory
     'setuptools>=75.1.0',
     'packaging>=24.1.0',
+    'importlib-metadata>=8.5.0',
     'tomli>=2.0.1 ; python_version < "3.11"',
+    'docutils>=0.21.2',
     # others
 ]
 dynamic = ['readme']

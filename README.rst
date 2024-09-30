@@ -71,7 +71,7 @@ or on development mode:
 License
 =======
 
-  | Copyright (c) 2020-2024 Adam Karpierz
+  | |copyright|
   | Licensed under the zlib/libpng License
   | https://opensource.org/license/zlib
   | Please refer to the accompanying LICENSE file.
@@ -83,6 +83,7 @@ Authors
 
 .. |package| replace:: pkg-about
 .. |package_bold| replace:: **pkg-about**
+.. |copyright| replace:: Copyright (c) 2020-2024 Adam Karpierz
 .. |respository| replace:: https://github.com/karpierz/pkg-about.git
 .. _Development page: https://github.com/karpierz/pkg-about
 .. _PyPI record: https://pypi.org/project/pkg-about/

@@ -4,8 +4,7 @@ Changelog
 1.2.0 (2024-09-30)
 ------------------
 - Drop support for Python 3.8
-- | Ability to define __copyright__ by the project's url 'Copyright'
-  | using 'about:' URI schema.
+- Ability to obtain __copyright__ from the README.rst content.
 - Setup (dependencies) update.
 
 1.1.8 (2024-08-13)
